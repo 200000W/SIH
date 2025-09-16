@@ -221,11 +221,7 @@ metadata:
   run_ui: false
 
 test_plan:
-  current_focus:
-    - "Bus movement simulation system"
-    - "Fleet status and monitoring APIs"
-    - "Customer bus finder API"
-    - "AI-powered fleet insights integration"
+  current_focus: []
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
