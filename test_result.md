@@ -119,15 +119,18 @@ backend:
 
   - task: "Bus movement simulation system"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "Background task for simulating bus movement along routes with GPS coordinates"
+      - working: true
+        agent: "testing"
+        comment: "Tested POST /api/start-simulation - successfully starts background simulation. Verified bus positions are updating every 3 seconds with realistic movement along routes. Simulation includes passenger occupancy changes and direction reversals at route endpoints."
 
   - task: "Fleet status and monitoring APIs"
     implemented: true
