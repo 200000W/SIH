@@ -339,34 +339,23 @@ async def get_ai_insights(buses_data: List[Dict], routes_data: List[Dict]) -> st
         route_cities = list(set([r["city"] for r in routes_data]))
         
         prompt = f"""
-        🚌 FLEET ANALYSIS REQUEST
+        Based on this Indian bus fleet data, provide clear, actionable recommendations:
         
-        Current Fleet Status:
-        • Total Buses: {total_buses} ({active_buses} active)
-        • Overall Occupancy: {occupancy_rate:.1f}%
-        • Average Passengers per Bus: {avg_occupancy:.1f}
-        • Cities Covered: {', '.join(route_cities)}
-        • High Occupancy Buses (>80%): {len(high_occupancy_buses)}
-        • Low Occupancy Buses (<30%): {len(low_occupancy_buses)}
+        CURRENT SITUATION:
+        • Fleet Size: {total_buses} buses ({active_buses} active)
+        • Passenger Load: {occupancy_rate:.1f}% capacity utilization
+        • Cities: {', '.join(route_cities)}
+        • Crowded Buses: {len(high_occupancy_buses)} buses over 80% full
+        • Underused Buses: {len(low_occupancy_buses)} buses under 30% full
         
-        Please provide 4-5 SPECIFIC, ACTIONABLE recommendations in this format:
+        Please provide exactly 4 recommendations in simple bullet points:
         
-        🎯 IMMEDIATE ACTIONS (Today):
-        1. [Specific action with bus numbers/routes if applicable]
+        1. IMMEDIATE ACTION (what to do today):
+        2. ROUTE OPTIMIZATION (this week):
+        3. PASSENGER EXPERIENCE (ongoing improvement):
+        4. EFFICIENCY BOOST (cost/time saving):
         
-        📊 OPTIMIZATION OPPORTUNITIES (This Week):  
-        2. [Route or scheduling recommendation]
-        
-        👥 PASSENGER EXPERIENCE (Ongoing):
-        3. [Crowd management suggestion]
-        
-        💡 EFFICIENCY IMPROVEMENTS:
-        4. [Operational efficiency recommendation]
-        
-        🚀 STRATEGIC INSIGHTS:
-        5. [Long-term improvement suggestion]
-        
-        Make each recommendation specific, measurable, and implementable by Indian bus fleet managers.
+        Keep each point to 1-2 sentences max. Focus on practical actions for Indian bus operators.
         """
         
         message = UserMessage(text=prompt)
