@@ -195,7 +195,7 @@ async def initialize_sample_data():
     if all_routes:
         await db.routes.insert_many(all_routes)
     
-    # Create sample buses
+    # Create sample buses (3 buses per route for better simulation)
     routes = await db.routes.find().to_list(length=None)
     buses = []
     
@@ -203,12 +203,12 @@ async def initialize_sample_data():
         # Get first stop coordinates
         first_stop = await db.bus_stops.find_one({"id": route["stops"][0]})
         if first_stop:
-            for j in range(2):  # 2 buses per route
+            for j in range(3):  # 3 buses per route (back to original count)
                 bus = Bus(
-                    bus_number=f"BUS-{route['city'][:3].upper()}-{i+1}{j+1}",
+                    bus_number=f"BUS-{route['city'][:3].upper()}-{i+1:02d}{j+1}",
                     route_id=route["id"],
-                    capacity=random.randint(40, 60),
-                    current_occupancy=random.randint(5, 30),
+                    capacity=random.randint(45, 55),
+                    current_occupancy=random.randint(8, 25),
                     current_lat=first_stop["lat"],
                     current_lng=first_stop["lng"],
                     current_stop_index=0,
