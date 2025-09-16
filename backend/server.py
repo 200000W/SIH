@@ -321,7 +321,7 @@ async def get_ai_insights(buses_data: List[Dict], routes_data: List[Dict]) -> st
         chat = LlmChat(
             api_key=os.environ.get('EMERGENT_LLM_KEY'),
             session_id=f"fleet_insights_{datetime.now().strftime('%Y%m%d_%H%M%S')}",
-            system_message="You are an expert transportation analyst providing insights for bus fleet management in Indian cities."
+            system_message="You are an expert transportation analyst providing actionable insights for bus fleet management in Indian cities. Provide clear, numbered recommendations that fleet managers can implement immediately."
         ).with_model("openai", "gpt-4o-mini")
         
         # Prepare data summary
@@ -335,27 +335,38 @@ async def get_ai_insights(buses_data: List[Dict], routes_data: List[Dict]) -> st
         high_occupancy_buses = [b for b in buses_data if (b["current_occupancy"] / b["capacity"]) > 0.8]
         low_occupancy_buses = [b for b in buses_data if (b["current_occupancy"] / b["capacity"]) < 0.3]
         
+        # Get route names and cities
+        route_cities = list(set([r["city"] for r in routes_data]))
+        
         prompt = f"""
-        Analyze this bus fleet data and provide 3-4 actionable insights:
+        🚌 FLEET ANALYSIS REQUEST
         
-        Fleet Overview:
-        - Total buses: {total_buses}
-        - Active buses: {active_buses}
-        - Overall occupancy rate: {occupancy_rate:.1f}%
-        - Average occupancy per bus: {avg_occupancy:.1f} passengers
+        Current Fleet Status:
+        • Total Buses: {total_buses} ({active_buses} active)
+        • Overall Occupancy: {occupancy_rate:.1f}%
+        • Average Passengers per Bus: {avg_occupancy:.1f}
+        • Cities Covered: {', '.join(route_cities)}
+        • High Occupancy Buses (>80%): {len(high_occupancy_buses)}
+        • Low Occupancy Buses (<30%): {len(low_occupancy_buses)}
         
-        High occupancy buses (>80%): {len(high_occupancy_buses)}
-        Low occupancy buses (<30%): {len(low_occupancy_buses)}
+        Please provide 4-5 SPECIFIC, ACTIONABLE recommendations in this format:
         
-        Route coverage: {len(routes_data)} routes across Indian cities
+        🎯 IMMEDIATE ACTIONS (Today):
+        1. [Specific action with bus numbers/routes if applicable]
         
-        Provide specific, actionable recommendations for:
-        1. Route optimization
-        2. Fleet deployment
-        3. Crowd management
-        4. Operational efficiency
+        📊 OPTIMIZATION OPPORTUNITIES (This Week):  
+        2. [Route or scheduling recommendation]
         
-        Keep response concise and practical for fleet managers.
+        👥 PASSENGER EXPERIENCE (Ongoing):
+        3. [Crowd management suggestion]
+        
+        💡 EFFICIENCY IMPROVEMENTS:
+        4. [Operational efficiency recommendation]
+        
+        🚀 STRATEGIC INSIGHTS:
+        5. [Long-term improvement suggestion]
+        
+        Make each recommendation specific, measurable, and implementable by Indian bus fleet managers.
         """
         
         message = UserMessage(text=prompt)
@@ -364,7 +375,30 @@ async def get_ai_insights(buses_data: List[Dict], routes_data: List[Dict]) -> st
         
     except Exception as e:
         logging.error(f"Error getting AI insights: {e}")
-        return "AI insights temporarily unavailable. Manual analysis recommended for current fleet status."
+        return """
+🚌 FLEET MANAGEMENT INSIGHTS
+
+🎯 IMMEDIATE ACTIONS (Today):
+1. Deploy additional buses to high-occupancy routes during peak hours (7-9 AM, 6-8 PM)
+
+📊 OPTIMIZATION OPPORTUNITIES (This Week):
+2. Analyze passenger flow patterns to adjust bus frequency on underutilized routes
+3. Implement dynamic routing based on real-time crowd data
+
+👥 PASSENGER EXPERIENCE (Ongoing):
+4. Set up real-time passenger information displays at major stops
+5. Introduce mobile app notifications for bus arrivals and delays
+
+💡 EFFICIENCY IMPROVEMENTS:
+6. Schedule preventive maintenance during off-peak hours to maximize bus availability
+7. Train drivers on fuel-efficient driving techniques to reduce operational costs
+
+🚀 STRATEGIC INSIGHTS:
+8. Consider electric buses for high-frequency routes to reduce long-term costs
+9. Implement AI-powered predictive maintenance to prevent breakdowns
+
+Note: AI insights temporarily unavailable. These are general recommendations for Indian bus fleet management.
+        """
 
 # API Routes
 @api_router.get("/")
