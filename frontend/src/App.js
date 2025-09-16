@@ -471,8 +471,8 @@ function App() {
       {searchResults.length > 0 && (
         <div className="bg-white p-6 rounded-lg shadow-lg">
           <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-            <Bus className="w-5 h-5 text-blue-500" />
-            Available Buses ({searchResults.length})
+            <Bus className="w-5 h-5 text-green-500" />
+            🚌 Available Buses ({searchResults.length} found)
           </h3>
           <div className="space-y-4">
             {searchResults.map((result, index) => (
