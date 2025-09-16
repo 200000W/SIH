@@ -469,7 +469,7 @@ async def get_fleet_status():
         "occupancy_rate": (current_occupancy / total_capacity * 100) if total_capacity > 0 else 0,
         "buses": buses_data,
         "routes": len(routes),
-        "last_updated": datetime.now().isoformat()
+        "last_updated": datetime.now().strftime("%I:%M %p")
     }
 
 @api_router.get("/ai-insights")
