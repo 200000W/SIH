@@ -164,7 +164,7 @@ function App() {
   };
 
   const searchBuses = async () => {
-    if (!fromStop || !toStop) return;
+    if (!fromStop.trim() || !toStop.trim()) return;
     
     try {
       setSearchLoading(true);
@@ -174,8 +174,8 @@ function App() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          from_stop: fromStop,
-          to_stop: toStop,
+          from_stop: fromStop.trim(),
+          to_stop: toStop.trim(),
         }),
       });
       
