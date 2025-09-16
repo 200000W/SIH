@@ -524,7 +524,7 @@ async def find_buses(query: BusQuery):
                 occupancy_percentage = int((bus["current_occupancy"] / bus["capacity"]) * 100)
                 available_seats = bus["capacity"] - bus["current_occupancy"]
                 
-                next_arrival = (datetime.now() + timedelta(minutes=eta_minutes)).strftime("%H:%M")
+                next_arrival = (datetime.now() + timedelta(minutes=eta_minutes)).strftime("%I:%M %p")
                 
                 results.append(BusQueryResponse(
                     bus_number=bus["bus_number"],
