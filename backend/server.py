@@ -482,7 +482,7 @@ async def get_fleet_insights():
     
     return {
         "insights": insights,
-        "generated_at": datetime.now(timezone.utc).isoformat()
+        "generated_at": datetime.now().isoformat()
     }
 
 @api_router.post("/find-buses", response_model=List[BusQueryResponse])
