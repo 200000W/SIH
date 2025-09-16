@@ -193,11 +193,15 @@ function App() {
     }
   };
 
-  const getOccupancyColor = (occupancy, capacity) => {
-    const percentage = (occupancy / capacity) * 100;
-    if (percentage < 30) return 'text-green-600';
-    if (percentage < 70) return 'text-yellow-600';
-    return 'text-red-600';
+  // Input handlers with explicit event handling
+  const handleFromStopChange = (event) => {
+    const value = event.target.value;
+    setFromStop(value);
+  };
+
+  const handleToStopChange = (event) => {
+    const value = event.target.value;
+    setToStop(value);
   };
 
   const getOccupancyBgColor = (percentage) => {
