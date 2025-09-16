@@ -428,15 +428,20 @@ function App() {
           <div className="flex items-end">
             <button
               onClick={searchBuses}
-              disabled={searchLoading || !fromStop || !toStop}
-              className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed"
+              disabled={searchLoading || !fromStop.trim() || !toStop.trim()}
+              className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg hover:from-blue-600 hover:to-blue-700 disabled:opacity-50 disabled:cursor-not-allowed font-medium transition-all duration-200 transform hover:scale-105"
             >
               {searchLoading ? (
-                <RefreshCw className="w-4 h-4 animate-spin" />
+                <>
+                  <RefreshCw className="w-5 h-5 animate-spin" />
+                  Finding Buses...
+                </>
               ) : (
-                <Search className="w-4 h-4" />
+                <>
+                  <Search className="w-5 h-5" />
+                  🔍 Find My Bus
+                </>
               )}
-              Search Buses
             </button>
           </div>
         </div>
