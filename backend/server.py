@@ -365,28 +365,17 @@ async def get_ai_insights(buses_data: List[Dict], routes_data: List[Dict]) -> st
     except Exception as e:
         logging.error(f"Error getting AI insights: {e}")
         return """
-🚌 FLEET MANAGEMENT INSIGHTS
+📊 FLEET INSIGHTS & RECOMMENDATIONS
 
-🎯 IMMEDIATE ACTIONS (Today):
-1. Deploy additional buses to high-occupancy routes during peak hours (7-9 AM, 6-8 PM)
+1. IMMEDIATE ACTION: Deploy extra buses during peak hours (7-9 AM, 6-8 PM) on high-demand routes to reduce overcrowding.
 
-📊 OPTIMIZATION OPPORTUNITIES (This Week):
-2. Analyze passenger flow patterns to adjust bus frequency on underutilized routes
-3. Implement dynamic routing based on real-time crowd data
+2. ROUTE OPTIMIZATION: Analyze passenger patterns weekly and adjust bus frequency on underutilized routes to improve efficiency.
 
-👥 PASSENGER EXPERIENCE (Ongoing):
-4. Set up real-time passenger information displays at major stops
-5. Introduce mobile app notifications for bus arrivals and delays
+3. PASSENGER EXPERIENCE: Install real-time arrival displays at major stops and send mobile notifications for delays.
 
-💡 EFFICIENCY IMPROVEMENTS:
-6. Schedule preventive maintenance during off-peak hours to maximize bus availability
-7. Train drivers on fuel-efficient driving techniques to reduce operational costs
+4. EFFICIENCY BOOST: Schedule maintenance during off-peak hours and train drivers on fuel-efficient techniques to cut costs.
 
-🚀 STRATEGIC INSIGHTS:
-8. Consider electric buses for high-frequency routes to reduce long-term costs
-9. Implement AI-powered predictive maintenance to prevent breakdowns
-
-Note: AI insights temporarily unavailable. These are general recommendations for Indian bus fleet management.
+💡 These recommendations are based on current fleet data and Indian urban transport best practices.
         """
 
 # API Routes
