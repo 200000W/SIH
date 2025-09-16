@@ -449,7 +449,7 @@ function App() {
 
       {/* Available Stops */}
       <div className="bg-white p-6 rounded-lg shadow-lg">
-        <h3 className="text-lg font-semibold mb-4">Available Bus Stops</h3>
+        <h3 className="text-lg font-semibold mb-4">🚏 Popular Bus Stops in Major Cities</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {['Delhi', 'Mumbai', 'Bangalore'].map((city) => (
             <div key={city} className="border rounded-lg p-4">
