@@ -134,15 +134,18 @@ backend:
 
   - task: "Fleet status and monitoring APIs"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "APIs for fleet overview, bus tracking, and real-time status"
+      - working: true
+        agent: "testing"
+        comment: "Tested all fleet monitoring APIs: GET /api/cities (3 cities), GET /api/stops (22 stops), GET /api/routes (9 routes), GET /api/buses (18 active buses), GET /api/fleet-status (comprehensive metrics). Fixed ObjectId serialization issue in fleet-status endpoint. All APIs return proper JSON responses with required fields."
 
   - task: "AI-powered fleet insights integration"
     implemented: true
