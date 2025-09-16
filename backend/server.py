@@ -423,6 +423,9 @@ async def get_fleet_status():
     total_capacity = sum(b["capacity"] for b in buses)
     current_occupancy = sum(b["current_occupancy"] for b in buses)
     
+    # Convert buses to proper format (remove MongoDB ObjectId)
+    buses_data = [Bus(**bus).dict() for bus in buses]
+    
     return {
         "total_buses": total_buses,
         "active_buses": active_buses,
@@ -430,7 +433,7 @@ async def get_fleet_status():
         "total_capacity": total_capacity,
         "current_occupancy": current_occupancy,
         "occupancy_rate": (current_occupancy / total_capacity * 100) if total_capacity > 0 else 0,
-        "buses": buses,
+        "buses": buses_data,
         "routes": len(routes),
         "last_updated": datetime.now(timezone.utc).isoformat()
     }
