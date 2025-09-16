@@ -229,3 +229,5 @@ test_plan:
 agent_communication:
   - agent: "main"
     message: "Created comprehensive bus fleet monitoring system with admin dashboard and customer interface. Need to test backend APIs, simulation system, and AI integration before marking as complete."
+  - agent: "testing"
+    message: "Completed comprehensive backend API testing. All 9 APIs tested successfully: initialize-data, cities, stops, routes, buses, fleet-status, start-simulation, find-buses, and ai-insights. Fixed ObjectId serialization issue in fleet-status endpoint. Bus simulation is working with real-time position updates. AI integration with Emergent LLM is functional. Backend system is fully operational and ready for production use."
