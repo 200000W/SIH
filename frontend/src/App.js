@@ -204,6 +204,13 @@ function App() {
     setToStop(value);
   };
 
+  const getOccupancyColor = (occupancy, capacity) => {
+    const percentage = (occupancy / capacity) * 100;
+    if (percentage < 30) return 'text-green-600';
+    if (percentage < 70) return 'text-yellow-600';
+    return 'text-red-600';
+  };
+
   const getOccupancyBgColor = (percentage) => {
     if (percentage < 30) return 'bg-green-100';
     if (percentage < 70) return 'bg-yellow-100';
