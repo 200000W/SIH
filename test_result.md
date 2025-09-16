@@ -164,15 +164,18 @@ backend:
 
   - task: "Customer bus finder API"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "API to find buses between stops with ETA calculations"
+      - working: true
+        agent: "testing"
+        comment: "Tested POST /api/find-buses with Red Fort to India Gate query - successfully returns available buses with ETA calculations, occupancy percentages, available seats, and next arrival times. Found 2 buses on route with 6-minute ETAs. API properly handles stop name matching and route filtering."
 
 frontend:
   - task: "Admin dashboard with live fleet tracking"
