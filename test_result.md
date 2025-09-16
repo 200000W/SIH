@@ -149,15 +149,18 @@ backend:
 
   - task: "AI-powered fleet insights integration"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "medium"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "main"
         comment: "LLM integration for route optimization and crowd management insights"
+      - working: true
+        agent: "testing"
+        comment: "Tested GET /api/ai-insights - successfully integrates with Emergent LLM using GPT-4o-mini. Generates comprehensive fleet management insights (1800+ chars) including route optimization, fleet deployment, crowd management, and operational efficiency recommendations. LLM key is properly configured and working."
 
   - task: "Customer bus finder API"
     implemented: true
